@@ -59,27 +59,27 @@ public class NeoIntegrationIT {
 //		System.out.println(height.getPreviousblockhash());
 //		System.out.println(height.getTime());
 //}
-	@Test
-	public void testGetBlockByNum(){
-		Integer block = 1010000;
-		Integer isverbose = 1;
-		NeoBlock height = client.getblock(block,isverbose);
-		System.out.println(height.getIndex());
-		System.out.println(height.getSize());
-		System.out.println(height.getHash());
-		System.out.println(height.getVersion());
-		System.out.println(height.getMerkleroot());
-		System.out.println(height.getNextconsensus());
-		System.out.println(height.getNonce());
-		System.out.println(height.getPreviousblockhash());
-		System.out.println(height.getTime());
-		for(NeoTransaction neoTransaction:height.getTx()){
-			List<NeoVout> neoVouts = neoTransaction.getVout();
-			for(NeoVout neoVout:neoVouts){
-				System.out.println(neoVout.toString());
-			}
-		}
-	}
+//	@Test
+//	public void testGetBlockByNum(){
+//		Integer block = 1010000;
+//		Integer isverbose = 1;
+//		NeoBlock height = client.getblock(block,isverbose);
+//		System.out.println(height.getIndex());
+//		System.out.println(height.getSize());
+//		System.out.println(height.getHash());
+//		System.out.println(height.getVersion());
+//		System.out.println(height.getMerkleroot());
+//		System.out.println(height.getNextconsensus());
+//		System.out.println(height.getNonce());
+//		System.out.println(height.getPreviousblockhash());
+//		System.out.println(height.getTime());
+//		for(NeoTransaction neoTransaction:height.getTx()){
+//			List<NeoVout> neoVouts = neoTransaction.getVout();
+//			for(NeoVout neoVout:neoVouts){
+//				System.out.println(neoVout.toString());
+//			}
+//		}
+//	}
 //	@Test
 //	public void testGetBalance(){
 //		String hash = "025d82f7b00a9ff1cfe709abe3c4741a105d067178e645bc3ebad9bc79af47d4";
