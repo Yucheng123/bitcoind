@@ -10,8 +10,9 @@ import java.util.Map;
 
 
 public interface NeoInterface {
-	public long getconnectioncount(List<Integer> param);
+	public long getblockcount(List<Integer> param);
 	public NeoBlock getblock(String hash, Integer isverbose);
+	public NeoBlock getblock(Integer blockNum,Integer isverbose);
 	public GetBalance getbalance(String hash);
 	public Validateaddress validateaddress(String hash);
 	public Getrawtransaction getrawtransaction(String hash, Integer isverbose);

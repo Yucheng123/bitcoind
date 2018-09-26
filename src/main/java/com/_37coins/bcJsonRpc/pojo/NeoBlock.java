@@ -3,6 +3,8 @@ package com._37coins.bcJsonRpc.pojo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.List;
+
 /**
  * Created by austere on 18/9/25.
  */
@@ -18,6 +20,7 @@ public class NeoBlock {
     private Long index;
     private String  nonce;
     private String nextconsensus;
+    private List<NeoTransaction> tx;
 
     public String getHash() {
         return hash;
@@ -89,5 +92,13 @@ public class NeoBlock {
 
     public void setNextconsensus(String nextconsensus) {
         this.nextconsensus = nextconsensus;
+    }
+
+    public List<NeoTransaction> getTx() {
+        return tx;
+    }
+
+    public void setTx(List<NeoTransaction> tx) {
+        this.tx = tx;
     }
 }

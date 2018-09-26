@@ -4,10 +4,7 @@ import com._37coins.bcJsonRpc.BitcoindClientFactory;
 import com._37coins.bcJsonRpc.BitcoindInterface;
 import com._37coins.bcJsonRpc.NeoClientFactory;
 import com._37coins.bcJsonRpc.NeoInterface;
-import com._37coins.bcJsonRpc.pojo.GetBalance;
-import com._37coins.bcJsonRpc.pojo.Getrawtransaction;
-import com._37coins.bcJsonRpc.pojo.NeoBlock;
-import com._37coins.bcJsonRpc.pojo.Validateaddress;
+import com._37coins.bcJsonRpc.pojo.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -15,6 +12,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class NeoIntegrationIT {
 	
@@ -40,11 +38,11 @@ public class NeoIntegrationIT {
 //
 //        assertTrue(balance.compareTo(BigDecimal.ZERO) >= 0);
 //	}
-//	@Test
-//	public void testGetBlockHeight(){
-//		Long height = client.getconnectioncount(new ArrayList<Integer>());
-//		System.out.println("height:"+height);
-//	}
+	@Test
+	public void testGetBlockHeight(){
+		Long height = client.getblockcount(new ArrayList<Integer>());
+		System.out.println("height:"+height);
+	}
 
 //	@Test
 //	public void testGetBlock(){
@@ -61,6 +59,27 @@ public class NeoIntegrationIT {
 //		System.out.println(height.getPreviousblockhash());
 //		System.out.println(height.getTime());
 //}
+	@Test
+	public void testGetBlockByNum(){
+		Integer block = 1010000;
+		Integer isverbose = 1;
+		NeoBlock height = client.getblock(block,isverbose);
+		System.out.println(height.getIndex());
+		System.out.println(height.getSize());
+		System.out.println(height.getHash());
+		System.out.println(height.getVersion());
+		System.out.println(height.getMerkleroot());
+		System.out.println(height.getNextconsensus());
+		System.out.println(height.getNonce());
+		System.out.println(height.getPreviousblockhash());
+		System.out.println(height.getTime());
+		for(NeoTransaction neoTransaction:height.getTx()){
+			List<NeoVout> neoVouts = neoTransaction.getVout();
+			for(NeoVout neoVout:neoVouts){
+				System.out.println(neoVout.toString());
+			}
+		}
+	}
 //	@Test
 //	public void testGetBalance(){
 //		String hash = "025d82f7b00a9ff1cfe709abe3c4741a105d067178e645bc3ebad9bc79af47d4";
@@ -76,18 +95,18 @@ public class NeoIntegrationIT {
 //		System.out.println(_validateaddress.isIsvalid());
 //
 //	}
-	@Test
-	public void testGetrawtransaction(){
-		String hash="c9a32cd215837c02dd72613bfad6ed064579e77bafd859907f87b3e67fa498cc";
-		Integer isverbose = 1 ;
-		try{
-			Getrawtransaction  _getrawtransaction  = client.getrawtransaction (hash,isverbose);
-			System.out.println(_getrawtransaction.getTxid());
-			System.out.println(_getrawtransaction.getSize());
-		}catch (Exception e ){
-			System.out.println("Unknown transaction");
-			System.out.println(e);
-		}
-
-	}
+//	@Test
+//	public void testGetrawtransaction(){
+//		String hash="f4250dab094c38d8265acc15c366dc508d2e14bf5699e12d9df26577ed74d657";
+//		Integer isverbose = 1 ;
+//		try{
+//			Getrawtransaction  _getrawtransaction  = client.getrawtransaction (hash,isverbose);
+//			System.out.println(_getrawtransaction.getTxid());
+//			System.out.println(_getrawtransaction.getSize());
+//		}catch (Exception e ){
+//			System.out.println("Unknown transaction");
+//			System.out.println(e);
+//		}
+//
+//	}
 }
