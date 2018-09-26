@@ -17,4 +17,5 @@ public class NeoTransaction {
     private Long nonce;
     private List<Vin> vin;
     private List<NeoVout> vout;
+    private Integer version;
 }
