@@ -15,7 +15,7 @@ public interface NeoInterface {
 	public NeoBlock getblock(Integer blockNum,Integer isverbose);
 	public GetBalance getbalance(String hash);
 	public Validateaddress validateaddress(String hash);
-	public Getrawtransaction getrawtransaction(String hash, Integer isverbose);
+	public NeoTransaction getrawtransaction(String hash, Integer isverbose);
 
 
 }

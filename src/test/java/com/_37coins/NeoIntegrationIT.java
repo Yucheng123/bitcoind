@@ -38,11 +38,11 @@ public class NeoIntegrationIT {
 //
 //        assertTrue(balance.compareTo(BigDecimal.ZERO) >= 0);
 //	}
-	@Test
-	public void testGetBlockHeight(){
-		Long height = client.getblockcount(new ArrayList<Integer>());
-		System.out.println("height:"+height);
-	}
+//	@Test
+//	public void testGetBlockHeight(){
+//		Long height = client.getblockcount(new ArrayList<Integer>());
+//		System.out.println("height:"+height);
+//	}
 
 //	@Test
 //	public void testGetBlock(){
@@ -109,4 +109,33 @@ public class NeoIntegrationIT {
 //		}
 //
 //	}
+	@Test
+	public  void  testNeoTransaction(){
+		String hash = "f4250dab094c38d8265acc15c366dc508d2e14bf5699e12d9df26577ed74d657";
+		Integer isverbose = 1;
+		NeoTransaction getNeoTransaction = client.getrawtransaction(hash, isverbose);
+		System.out.println("txid:"+getNeoTransaction.getTxid());
+		System.out.println("size:"+getNeoTransaction.getSize());
+		System.out.println("type:"+getNeoTransaction.getType());
+		System.out.println("version:"+getNeoTransaction.getVersion());
+		System.out.println("sys_fee"+getNeoTransaction.getSys_fee());
+		System.out.println("net_fee:"+getNeoTransaction.getNet_fee());
+		System.out.println("blockhash:"+getNeoTransaction.getBlockhash());
+		System.out.println("confirmations:"+getNeoTransaction.getConfirmations());
+		System.out.println("blocktime:"+getNeoTransaction.getBlocktime());
+		for (NeoVin _list : getNeoTransaction.getVin()) {
+			System.out.println("vin.txid:"+_list.getTxid());
+			System.out.println("vim.vout:"+_list.getVout());
+		}
+		for (NeoVout _list : getNeoTransaction.getVout()) {
+			System.out.println("vout.n:"+_list.getN());
+			System.out.println("vout.asset:"+_list.getAsset());
+			System.out.println("vout.value:"+_list.getValue());
+			System.out.println("vout.address:"+_list.getAddress());
+		}
+		for (Scripts _list : getNeoTransaction.getScripts()) {
+			System.out.println("scripts.verification:"+_list.getVerification());
+			System.out.println("scripts.vocation:"+_list.getInvocation());
+		}
+	}
 }
